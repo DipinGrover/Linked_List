@@ -74,6 +74,27 @@ Node* delete_head_of_dll(Node* head)
     return temp;
 }
 
+Node* delete_tail_of_dll(Node* head)
+{
+    Node* temp = head;
+
+    while(temp->next->next != NULL)
+    {
+        // move
+        temp = temp->next;
+    }
+
+    Node* next_one = temp->next;
+
+    temp->next = nullptr;
+
+    next_one->prev = nullptr;
+
+    delete next_one;
+
+    return head;
+}
+
 int main()
 {
     vector<int> arr = {2,5,1,7,4};
@@ -82,7 +103,21 @@ int main()
 
     traversal_in_dll(head);
 
-    head = delete_head_of_dll(head);
+    // // deletion of head in dll
+    // head = delete_head_of_dll(head);
+    // cout << endl;
+    // traversal_in_dll(head);
+
+
+
+
+
+
+
+
+
+    // deletion of tail in dll
+    head = delete_tail_of_dll(head);
     cout << endl;
     traversal_in_dll(head);
 }
