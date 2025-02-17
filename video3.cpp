@@ -59,11 +59,30 @@ void traversal_in_dll(Node* head)
 
 }
 
+Node* delete_head_of_dll(Node* head)
+{
+    Node* temp = head;
+
+    temp = temp->next;
+
+    temp->prev = nullptr;
+
+    head->next = nullptr;
+
+    delete(head);
+
+    return temp;
+}
+
 int main()
 {
     vector<int> arr = {2,5,1,7,4};
 
     Node* head = array_to_dll(arr);
 
+    traversal_in_dll(head);
+
+    head = delete_head_of_dll(head);
+    cout << endl;
     traversal_in_dll(head);
 }
