@@ -120,9 +120,64 @@ Node* delete_tail_of_dll(Node* head)
     return head;
 }
 
+Node* delete_kth_node(Node* head , int k)
+{
+    if(head == NULL)
+    {
+        // empty ll
+        return NULL;
+    }
+
+    if(head->next == NULL)
+    {
+        // single node ll
+        if(k==1)
+        {
+            delete head;
+            return NULL;
+        }
+        else
+        {
+            return NULL; // only one node is there but we want to delete 3or 4th node maybe 
+        }
+    }
+    int cnt = 0;
+    Node* temp = head;
+
+    while(temp != NULL)
+    {
+        // for traversal
+
+        cnt ++;
+
+        if(cnt == k)
+        {
+            if(temp->prev == NULL)
+            {
+                return delete_head_of_dll(head);
+            }
+            if(temp->next == NULL)
+            {
+                return delete_tail_of_dll(head);
+            }
+            else{
+                Node* back_node = temp->prev;
+                Node* next_node = temp->next;
+                temp->next = nullptr;
+                temp->prev = nullptr;
+                back_node->next = next_node;
+                next_node->prev = back_node;
+                break;
+            }
+        }
+        temp = temp->next;
+    }
+    return head;
+}
+
 int main()
 {
-    vector<int> arr = {2,5,1,7,4};
+    vector<int> arr = {2,7,1,3,5};
 
     Node* head = array_to_dll(arr);
 
@@ -141,8 +196,21 @@ int main()
 
 
 
-    // deletion of tail in dll
-    head = delete_tail_of_dll(head);
+    // // deletion of tail in dll
+    // head = delete_tail_of_dll(head);
+    // cout << endl;
+    // traversal_in_dll(head);
+
+
+
+
+
+
+
+
+
+    // delete kth node
+    head = delete_kth_node(head , 5);
     cout << endl;
     traversal_in_dll(head);
 }
