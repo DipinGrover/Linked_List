@@ -90,6 +90,17 @@ Node* delete_head_of_dll(Node* head)
 
 Node* delete_tail_of_dll(Node* head)
 {
+    if(head == NULL)
+    {
+        // empty LL
+        return NULL;
+    }
+    else if(head->next == NULL)
+    {
+        // single node Linked List head will be tail
+        delete head;
+        return NULL;
+    }
     Node* temp = head;
 
     while(temp->next->next != NULL)
