@@ -61,6 +61,20 @@ void traversal_in_dll(Node* head)
 
 Node* delete_head_of_dll(Node* head)
 {
+    if(head == NULL)
+    {
+        // empty LL
+        return NULL;
+    }
+
+    if(head->next == NULL)
+    {
+        // single element LL
+        delete head;
+
+        return NULL;
+    }
+
     Node* temp = head;
 
     temp = temp->next;
